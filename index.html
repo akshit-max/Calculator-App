@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Calculator</title>
+    <script>
+        // function updateScreen(valuee) {
+
+
+        //     let led = document.getElementById("screen");
+        //     led.value += valuee;  // Append the value to the input field
+        // }
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".box").forEach(function (box) {
+                box.addEventListener("click", function () {
+                    let valuee = this.innerHTML
+                    console.log(valuee)
+                    // updateScreen(valuee);
+                    let led = document.getElementById("screen");
+                    if (valuee === "C") {
+                        led.value = " ";
+                        return;
+
+                    }
+                    else if (valuee === "=") {
+                        try {
+                            led.value = eval(led.value)
+                        }
+                        catch {
+                            led.value = "ERROR!!!"
+                        }
+                    }
+                    else if (["+", "-", "*", "/"].includes(valuee) && ["+", "-", "*", "/"].includes(led.value.slice(-1))) {
+                        led.value = led.value.slice(0, -1) + valuee;
+                    }
+
+                    else {
+                        led.value += valuee;
+                    }
+
+
+                });
+            });
+        });
+
+    </script>
+    <style>
+        * {
+            padding: 0px;
+            margin: 0px;
+            box-sizing: border-box;
+        }
+
+        .container {
+            background-color: #34495e;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+
+
+        .btn {
+            /* background-color: rgb(64, 0, 255); */
+            display: flex;
+            flex-direction: column;
+            gap: 41px;
+            margin: 53px;
+            padding: 0px 10px;
+
+
+        }
+
+        .main {
+            background-color: black;
+            height: 80vh;
+            width: 40%;
+            display: flex;
+            /* align-items: center; */
+            /* justify-content: center; */
+            flex-direction: column;
+            text-align: center;
+            border: 2px solid black;
+            border-radius: 20px;
+            box-shadow: 10px 20px 30px grey;
+            /* position: relative; */
+
+        }
+
+        .screen {
+            margin: 39px;
+            width: 90%;
+            height: 70px;
+            padding: 45px 29px;
+            border: 2px solid black;
+            border-radius: 58px;
+            box-shadow: 5px 2px 30px grey;
+            font: bolder;
+            font-size: xx-large;
+        }
+
+        .row1 {
+            display: flex;
+            gap: 23px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row2 {
+            display: flex;
+            gap: 23px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row3 {
+            display: flex;
+            gap: 23px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row4 {
+            display: flex;
+            gap: 23px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .row5 {
+            display: flex;
+            gap: 23px;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .box {
+            height: 73px;
+            width: 169px;
+            border: 2px solid black;
+            border-radius: 20px;
+            box-shadow: 5px 2px 30px grey;
+            font: bolder;
+            font-size: xx-large;
+            color: aliceblue;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+        }
+
+        .last {
+            color: #16a085;
+        }
+
+        .box:hover {
+            background-color: #2980b9;
+            transition: all 1s cubic-bezier(0.075, 0.82, 0.165, 1) 0s;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <div class="main">
+            <div class="led">
+                <input autofocus id="screen" class="screen" type="text" placeholder="please enter the digits!!">
+            </div>
+            <div class="btn">
+                <div class="row1">
+                    <div id="box" class="box">C</div>
+                    <div id="box" class="box">M</div>
+                    <div id="box" class="box">%</div>
+                    <div id="box" class="box last">/</div>
+                </div>
+                <div class="row2">
+                    <div id="box" class="box">7</div>
+                    <div id="box" class="box">8</div>
+                    <div id="box" class="box">9</div>
+                    <div id="box" class="box last">*</div>
+                </div>
+                <div class="row3">
+                    <div id="box" class="box">4</div>
+                    <div id="box" class="box">5</div>
+                    <div id="box" class="box">6</div>
+                    <div id="box" class="box last">-</div>
+                </div>
+                <div class="row4">
+                    <div id="box" class="box">1</div>
+                    <div id="box" class="box">2</div>
+                    <div id="box" class="box">3</div>
+                    <div id="box" class="box last">+</div>
+                </div>
+                <div class="row5">
+                    <div id="box" class="box">0</div>
+                    <div id="box" class="box">,</div>
+                    <div id="box" class="box">+/-</div>
+                    <div id="box" class="box last">=</div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+
+</html>
